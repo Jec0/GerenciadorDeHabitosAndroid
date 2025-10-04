@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">GerenciadorHabitos</string>
+
+    <string-array name="frequency_options">
+        <item>Diário</item>
+        <item>Semanal</item>
+        <item>Mensal</item>
+        <item>A cada 2 dias</item>
+    </string-array>
+</resources>

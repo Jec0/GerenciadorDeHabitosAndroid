@@ -1,0 +1,50 @@
+[
+    {
+        "merged": "com.example.gerenciadorhabitos.app-debug-35:/layout_activity_main.xml.flat",
+        "source": "com.example.gerenciadorhabitos.app-main-37:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.gerenciadorhabitos.app-debug-35:/layout_item_habit.xml.flat",
+        "source": "com.example.gerenciadorhabitos.app-main-37:/layout/item_habit.xml"
+    },
+    {
+        "merged": "com.example.gerenciadorhabitos.app-debug-35:/layout_activity_add_habit.xml.flat",
+        "source": "com.example.gerenciadorhabitos.app-main-37:/layout/activity_add_habit.xml"
+    },
+    {
+        "merged": "com.example.gerenciadorhabitos.app-debug-35:/drawable_ic_check_circle.xml.flat",
+        "source": "com.example.gerenciadorhabitos.app-main-37:/drawable/ic_check_circle.xml"
+    },
+    {
+        "merged": "com.example.gerenciadorhabitos.app-debug-35:/drawable_bg_green_rounded.xml.flat",
+        "source": "com.example.gerenciadorhabitos.app-main-37:/drawable/bg_green_rounded.xml"
+    },
+    {
+        "merged": "com.example.gerenciadorhabitos.app-debug-35:/drawable_progress_bar_custom.xml.flat",
+        "source": "com.example.gerenciadorhabitos.app-main-37:/drawable/progress_bar_custom.xml"
+    },
+    {
+        "merged": "com.example.gerenciadorhabitos.app-debug-35:/layout_list_item_habit.xml.flat",
+        "source": "com.example.gerenciadorhabitos.app-main-37:/layout/list_item_habit.xml"
+    },
+    {
+        "merged": "com.example.gerenciadorhabitos.app-debug-35:/drawable_bg_edittext.xml.flat",
+        "source": "com.example.gerenciadorhabitos.app-main-37:/drawable/bg_edittext.xml"
+    },
+    {
+        "merged": "com.example.gerenciadorhabitos.app-debug-35:/layout_list_item_profile.xml.flat",
+        "source": "com.example.gerenciadorhabitos.app-main-37:/layout/list_item_profile.xml"
+    },
+    {
+        "merged": "com.example.gerenciadorhabitos.app-debug-35:/drawable_ic_arrow_back.xml.flat",
+        "source": "com.example.gerenciadorhabitos.app-main-37:/drawable/ic_arrow_back.xml"
+    },
+    {
+        "merged": "com.example.gerenciadorhabitos.app-debug-35:/layout_activity_profile.xml.flat",
+        "source": "com.example.gerenciadorhabitos.app-main-37:/layout/activity_profile.xml"
+    },
+    {
+        "merged": "com.example.gerenciadorhabitos.app-debug-35:/drawable_bg_progress_card.xml.flat",
+        "source": "com.example.gerenciadorhabitos.app-main-37:/drawable/bg_progress_card.xml"
+    }
+]
