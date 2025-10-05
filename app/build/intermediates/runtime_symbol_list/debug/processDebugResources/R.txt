@@ -3175,6 +3175,7 @@ int id bounce 0x7f09005e
 int id bounceBoth 0x7f09005f
 int id bounceEnd 0x7f090060
 int id bounceStart 0x7f090061
+int id btnBack 0x7f09020e
 int id btnContinue 0x7f090209
 int id btnDelete 0x7f090062
 int id btnSaveHabit 0x7f090063
@@ -3578,6 +3579,7 @@ int id tvHabitGoal 0x7f0901ee
 int id tvHabitName 0x7f0901ef
 int id tvProfileName 0x7f09020c
 int id tvProgress 0x7f0901f0
+int id tvQuote 0x7f09020d
 int id tvTitle 0x7f0901f1
 int id unchecked 0x7f0901f2
 int id uniform 0x7f0901f3

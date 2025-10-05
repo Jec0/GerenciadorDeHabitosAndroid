@@ -2,6 +2,7 @@ package com.example.gerenciadorhabitos.data;
 
 import android.database.Cursor;
 import androidx.annotation.NonNull;
+import androidx.room.EntityDeletionOrUpdateAdapter;
 import androidx.room.EntityInsertionAdapter;
 import androidx.room.RoomDatabase;
 import androidx.room.RoomSQLiteQuery;
@@ -25,6 +26,8 @@ public final class ProfileDao_Impl implements ProfileDao {
 
   private final EntityInsertionAdapter<Profile> __insertionAdapterOfProfile;
 
+  private final EntityDeletionOrUpdateAdapter<Profile> __deletionAdapterOfProfile;
+
   public ProfileDao_Impl(@NonNull final RoomDatabase __db) {
     this.__db = __db;
     this.__insertionAdapterOfProfile = new EntityInsertionAdapter<Profile>(__db) {
@@ -44,6 +47,18 @@ public final class ProfileDao_Impl implements ProfileDao {
         }
       }
     };
+    this.__deletionAdapterOfProfile = new EntityDeletionOrUpdateAdapter<Profile>(__db) {
+      @Override
+      @NonNull
+      protected String createQuery() {
+        return "DELETE FROM `profiles` WHERE `id` = ?";
+      }
+
+      @Override
+      protected void bind(@NonNull final SupportSQLiteStatement statement, final Profile entity) {
+        statement.bindLong(1, entity.id);
+      }
+    };
   }
 
   @Override
@@ -52,6 +67,18 @@ public final class ProfileDao_Impl implements ProfileDao {
     __db.beginTransaction();
     try {
       __insertionAdapterOfProfile.insert(profile);
+      __db.setTransactionSuccessful();
+    } finally {
+      __db.endTransaction();
+    }
+  }
+
+  @Override
+  public void delete(final Profile profile) {
+    __db.assertNotSuspendingTransaction();
+    __db.beginTransaction();
+    try {
+      __deletionAdapterOfProfile.handle(profile);
       __db.setTransactionSuccessful();
     } finally {
       __db.endTransaction();

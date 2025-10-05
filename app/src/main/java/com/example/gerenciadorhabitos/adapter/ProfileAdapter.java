@@ -16,6 +16,12 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
     private final List<Profile> profiles;
     private final OnProfileListener listener;
 
+    public interface OnProfileListener {
+        void onProfileClick(Profile profile);
+        void onAddProfileClick();
+        void onProfileLongClick(Profile profile, int adapterPosition);
+    }
+
     public ProfileAdapter(List<Profile> profiles, OnProfileListener listener) {
         this.profiles = profiles;
         this.listener = listener;
@@ -25,7 +31,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
     @Override
     public ProfileViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_profile, parent, false);
-        return new ProfileViewHolder(view, listener);
+        return new ProfileViewHolder(view);
     }
 
     @Override
@@ -43,17 +49,34 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
         return profiles.size() + 1;
     }
 
-    static class ProfileViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class ProfileViewHolder extends RecyclerView.ViewHolder {
         private final TextView tvProfileName;
         private final ImageView ivProfileIcon;
-        private final OnProfileListener listener;
 
-        public ProfileViewHolder(@NonNull View itemView, OnProfileListener listener) {
+        public ProfileViewHolder(@NonNull View itemView) {
             super(itemView);
             tvProfileName = itemView.findViewById(R.id.tvProfileName);
             ivProfileIcon = itemView.findViewById(R.id.ivProfileIcon);
-            this.listener = listener;
-            itemView.setOnClickListener(this);
+
+            itemView.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                if (listener != null && position != RecyclerView.NO_POSITION) {
+                    if (position == 0) {
+                        listener.onAddProfileClick();
+                    } else {
+                        listener.onProfileClick(profiles.get(position - 1));
+                    }
+                }
+            });
+
+            itemView.setOnLongClickListener(v -> {
+                int position = getAdapterPosition();
+                if (listener != null && position > 0 && position != RecyclerView.NO_POSITION) {
+                    listener.onProfileLongClick(profiles.get(position - 1), position);
+                    return true;
+                }
+                return false;
+            });
         }
 
         void bind(Profile profile) {
@@ -67,14 +90,5 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
             ivProfileIcon.setVisibility(View.VISIBLE);
             ivProfileIcon.setImageResource(android.R.drawable.ic_input_add);
         }
-
-        @Override
-        public void onClick(View v) {
-            listener.onProfileClick(getAdapterPosition());
-        }
-    }
-
-    public interface OnProfileListener {
-        void onProfileClick(int position);
     }
 }

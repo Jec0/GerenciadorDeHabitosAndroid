@@ -2,14 +2,20 @@ package com.example.gerenciadorhabitos;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gerenciadorhabitos.adapter.HabitAdapter;
+import com.example.gerenciadorhabitos.api.Quote;
+import com.example.gerenciadorhabitos.api.QuoteApiService;
+import com.example.gerenciadorhabitos.api.RetrofitClient;
 import com.example.gerenciadorhabitos.data.AppDatabase;
 import com.example.gerenciadorhabitos.model.Habit;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -17,13 +23,20 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MainActivity extends AppCompatActivity implements HabitAdapter.OnHabitListener {
     private AppDatabase db;
-    private List<Habit> habits = new ArrayList<>();
+    private final List<Habit> habits = new ArrayList<>();
     private HabitAdapter adapter;
     private TextView tvProgress;
     private ProgressBar progressBar;
+    private TextView tvQuote;
     private int selectedProfileId = -1;
+    private ImageView ivProfile;
+    private ImageButton btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +58,17 @@ public class MainActivity extends AppCompatActivity implements HabitAdapter.OnHa
         db = AppDatabase.getInstance(this);
         tvProgress = findViewById(R.id.tvProgress);
         progressBar = findViewById(R.id.progressBar);
+        tvQuote = findViewById(R.id.tvQuote);
+
+        btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> {
+            finish();
+        });
+
+        ivProfile = findViewById(R.id.ivProfile);
+        ivProfile.setOnClickListener(v -> finish());
+
+        fetchQuote();
 
         RecyclerView rv = findViewById(R.id.recyclerHabits);
         rv.setLayoutManager(new GridLayoutManager(this, 2));
@@ -60,12 +84,39 @@ public class MainActivity extends AppCompatActivity implements HabitAdapter.OnHa
         });
     }
 
+    private void fetchQuote() {
+        QuoteApiService apiService = RetrofitClient.getClient().create(QuoteApiService.class);
+        Call<List<Quote>> call = apiService.getRandomQuote();
+
+        call.enqueue(new Callback<List<Quote>>() {
+            @Override
+            public void onResponse(Call<List<Quote>> call, Response<List<Quote>> response) {
+                if (response.isSuccessful() && response.body() != null && !response.body().isEmpty()) {
+                    Quote quote = response.body().get(0);
+                    String quoteText = "\"" + quote.getText() + "\" - " + quote.getAuthor();
+                    tvQuote.setText(quoteText);
+                } else {
+                    tvQuote.setText("Não foi possível carregar a citação do dia.");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Quote>> call, Throwable t) {
+                tvQuote.setText("Falha na conexão. Verifique sua internet.");
+            }
+        });
+    }
+
     private void refreshList() {
         if (selectedProfileId != -1) {
-            habits.clear();
-            habits.addAll(db.habitDao().getHabitsForProfile(selectedProfileId));
-            adapter.notifyDataSetChanged();
-            updateProgress();
+            new Thread(() -> {
+                habits.clear();
+                habits.addAll(db.habitDao().getHabitsForProfile(selectedProfileId));
+                runOnUiThread(() -> {
+                    adapter.notifyDataSetChanged();
+                    updateProgress();
+                });
+            }).start();
         }
     }
 
@@ -95,7 +146,8 @@ public class MainActivity extends AppCompatActivity implements HabitAdapter.OnHa
     public void onHabitClick(int position) {
         Habit habit = habits.get(position);
         habit.completedToday = !habit.completedToday;
-        db.habitDao().update(habit);
-        refreshList();
+        new Thread(() -> db.habitDao().update(habit)).start();
+        updateProgress();
+        adapter.notifyItemChanged(position);
     }
 }

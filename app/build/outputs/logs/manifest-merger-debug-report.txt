@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:2:1-29:12
+ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:2:1-30:12
+INJECTED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:2:1-30:12
+INJECTED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:2:1-30:12
+INJECTED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:2:1-30:12
 MERGED from [androidx.databinding:viewbinding:8.13.0] C:\Users\Jeco\.gradle\caches\9.0-milestone-1\transforms\ea43dde0d3cdab9c45092d615be80ee6\transformed\jetified-viewbinding-8.13.0\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\Jeco\.gradle\caches\9.0-milestone-1\transforms\6f5fa7d5ad17a7333aa0c9844df1cc49\transformed\material-1.11.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\Jeco\.gradle\caches\9.0-milestone-1\transforms\e3c6b6dd55025097ff5f414077a9f9cc\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
@@ -59,9 +59,13 @@ MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\Jeco\.g
 		INJECTED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:4:5-67
+	android:name
+		ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:4:22-64
 application
-ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:5:5-27:19
-INJECTED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:5:5-27:19
+ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:6:5-28:19
+INJECTED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:6:5-28:19
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\Jeco\.gradle\caches\9.0-milestone-1\transforms\6f5fa7d5ad17a7333aa0c9844df1cc49\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\Jeco\.gradle\caches\9.0-milestone-1\transforms\6f5fa7d5ad17a7333aa0c9844df1cc49\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\Jeco\.gradle\caches\9.0-milestone-1\transforms\e3c6b6dd55025097ff5f414077a9f9cc\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -85,39 +89,39 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Je
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.9.0] C:\Users\Jeco\.gradle\caches\9.0-milestone-1\transforms\120c5abbf699896ca67ae2222f6c5af1\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
 	android:label
-		ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:7:9-47
+		ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:8:9-47
 	android:allowBackup
-		ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:6:9-35
+		ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:7:9-35
 	android:theme
-		ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:8:9-65
+		ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:9:9-65
 activity#com.example.gerenciadorhabitos.ProfileActivity
-ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:10:9-17:20
+ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:11:9-18:20
 	android:exported
-		ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:12:13-36
+		ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:13:13-36
 	android:name
-		ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:11:13-44
+		ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:12:13-44
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:13:13-16:29
+ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:14:13-17:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:14:17-69
+ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:15:17-69
 	android:name
-		ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:14:25-66
+		ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:15:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:15:17-77
+ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:16:17-77
 	android:name
-		ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:15:27-74
+		ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:16:27-74
 activity#com.example.gerenciadorhabitos.AddHabitActivity
-ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:19:9-21:58
+ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:20:9-22:58
 	android:parentActivityName
-		ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:21:13-55
+		ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:22:13-55
 	android:name
-		ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:20:13-45
+		ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:21:13-45
 activity#com.example.gerenciadorhabitos.MainActivity
-ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:23:9-25:40
+ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:24:9-26:40
 	android:exported
-		ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:25:13-37
+		ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:26:13-37
 	android:name
-		ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:24:13-41
+		ADDED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml:25:13-41
 uses-sdk
 INJECTED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\Jeco\Desktop\GerenciadorHabitos\app\src\main\AndroidManifest.xml

@@ -1,26 +1,28 @@
 package com.example.gerenciadorhabitos;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.gerenciadorhabitos.adapter.ProfileAdapter;
 import com.example.gerenciadorhabitos.data.AppDatabase;
 import com.example.gerenciadorhabitos.model.Profile;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity implements ProfileAdapter.OnProfileListener {
 
     private AppDatabase db;
-    private List<Profile> profiles = new ArrayList<>();
+    private final List<Profile> profiles = new ArrayList<>();
     private ProfileAdapter adapter;
     private Profile selectedProfile = null;
 
@@ -54,20 +56,39 @@ public class ProfileActivity extends AppCompatActivity implements ProfileAdapter
     }
 
     private void loadProfiles() {
-        profiles.clear();
-        profiles.addAll(db.profileDao().getAll());
-        adapter.notifyDataSetChanged();
+        new Thread(() -> {
+            profiles.clear();
+            profiles.addAll(db.profileDao().getAll());
+            runOnUiThread(() -> adapter.notifyDataSetChanged());
+        }).start();
     }
 
     @Override
-    public void onProfileClick(int position) {
-        if (position == 0) {
-            showCreateProfileDialog();
-        } else {
-            selectedProfile = profiles.get(position - 1);
-            Toast.makeText(this, "Perfil selecionado: " + selectedProfile.name, Toast.LENGTH_SHORT).show();
-            openHabitsScreen(selectedProfile.id);
-        }
+    public void onProfileClick(Profile profile) {
+        Toast.makeText(this, "Carregando perfil: " + profile.name, Toast.LENGTH_SHORT).show();
+        openHabitsScreen(profile.id);
+    }
+
+    @Override
+    public void onAddProfileClick() {
+        showCreateProfileDialog();
+    }
+
+    @Override
+    public void onProfileLongClick(Profile profile, int adapterPosition) {
+        new AlertDialog.Builder(this)
+                .setTitle("Excluir Perfil")
+                .setMessage("Tem certeza que deseja excluir o perfil '" + profile.name + "'? Todos os hábitos associados serão perdidos permanentemente.")
+                .setPositiveButton("Excluir", (dialog, which) -> {
+                    new Thread(() -> {
+                        db.profileDao().delete(profile);
+                        runOnUiThread(this::loadProfiles);
+                    }).start();
+                    Toast.makeText(ProfileActivity.this, "Perfil excluído", Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton("Cancelar", null)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 
     private void showCreateProfileDialog() {
@@ -82,8 +103,10 @@ public class ProfileActivity extends AppCompatActivity implements ProfileAdapter
         builder.setPositiveButton("Salvar", (dialog, which) -> {
             String name = input.getText().toString().trim();
             if (!name.isEmpty()) {
-                db.profileDao().insert(new Profile(name));
-                loadProfiles();
+                new Thread(() -> {
+                    db.profileDao().insert(new Profile(name));
+                    runOnUiThread(this::loadProfiles);
+                }).start();
             }
         });
         builder.setNegativeButton("Cancelar", (dialog, which) -> dialog.cancel());

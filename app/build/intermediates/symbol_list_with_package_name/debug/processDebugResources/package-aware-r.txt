@@ -3176,6 +3176,7 @@ id bounce
 id bounceBoth
 id bounceEnd
 id bounceStart
+id btnBack
 id btnContinue
 id btnDelete
 id btnSaveHabit
@@ -3579,6 +3580,7 @@ id tvHabitGoal
 id tvHabitName
 id tvProfileName
 id tvProgress
+id tvQuote
 id tvTitle
 id unchecked
 id uniform

@@ -4,6 +4,7 @@ package com.example.gerenciadorhabitos.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -25,6 +26,9 @@ public final class ActivityMainBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final ImageButton btnBack;
+
+  @NonNull
   public final FloatingActionButton fabAdd;
 
   @NonNull
@@ -43,20 +47,25 @@ public final class ActivityMainBinding implements ViewBinding {
   public final TextView tvProgress;
 
   @NonNull
+  public final TextView tvQuote;
+
+  @NonNull
   public final TextView tvTitle;
 
-  private ActivityMainBinding(@NonNull ConstraintLayout rootView,
+  private ActivityMainBinding(@NonNull ConstraintLayout rootView, @NonNull ImageButton btnBack,
       @NonNull FloatingActionButton fabAdd, @NonNull ImageView ivProfile,
       @NonNull ProgressBar progressBar, @NonNull LinearLayout progressCard,
-      @NonNull RecyclerView recyclerHabits, @NonNull TextView tvProgress,
+      @NonNull RecyclerView recyclerHabits, @NonNull TextView tvProgress, @NonNull TextView tvQuote,
       @NonNull TextView tvTitle) {
     this.rootView = rootView;
+    this.btnBack = btnBack;
     this.fabAdd = fabAdd;
     this.ivProfile = ivProfile;
     this.progressBar = progressBar;
     this.progressCard = progressCard;
     this.recyclerHabits = recyclerHabits;
     this.tvProgress = tvProgress;
+    this.tvQuote = tvQuote;
     this.tvTitle = tvTitle;
   }
 
@@ -87,6 +96,12 @@ public final class ActivityMainBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.btnBack;
+      ImageButton btnBack = ViewBindings.findChildViewById(rootView, id);
+      if (btnBack == null) {
+        break missingId;
+      }
+
       id = R.id.fabAdd;
       FloatingActionButton fabAdd = ViewBindings.findChildViewById(rootView, id);
       if (fabAdd == null) {
@@ -123,14 +138,20 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tvQuote;
+      TextView tvQuote = ViewBindings.findChildViewById(rootView, id);
+      if (tvQuote == null) {
+        break missingId;
+      }
+
       id = R.id.tvTitle;
       TextView tvTitle = ViewBindings.findChildViewById(rootView, id);
       if (tvTitle == null) {
         break missingId;
       }
 
-      return new ActivityMainBinding((ConstraintLayout) rootView, fabAdd, ivProfile, progressBar,
-          progressCard, recyclerHabits, tvProgress, tvTitle);
+      return new ActivityMainBinding((ConstraintLayout) rootView, btnBack, fabAdd, ivProfile,
+          progressBar, progressCard, recyclerHabits, tvProgress, tvQuote, tvTitle);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
